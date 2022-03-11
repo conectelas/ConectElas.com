@@ -11,15 +11,17 @@ import java.util.Set;
 
 public class UserDetailsImpl implements UserDetails {
 
-    private final String username;
-    private final String password;
-    private final Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
+    private String username;
+    private String password;
+    private Set<GrantedAuthority> authorities = new HashSet<GrantedAuthority>();
 
     public UserDetailsImpl(UsuarioModel usuario) {
         username = usuario.getEmail();
         password = usuario.getSenha();
         authorities.add(new SimpleGrantedAuthority("USER"));
     }
+
+    public UserDetailsImpl() { };
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
